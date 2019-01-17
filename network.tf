@@ -82,7 +82,7 @@ resource "aws_route_table_association" "dmz-subnet" {
 
 # limit the amout of public web subnets to the amount of AZ
 resource "aws_route_table_association" "pub_web-subnet" {
-  count          = "${local.modulus_az}"
+  count          = "${local.mod_az}"
   subnet_id      = "${element(aws_subnet.pub_web_subnet.*.id, count.index)}"
   route_table_id = "${aws_route_table.rtb.id}"
 
@@ -122,11 +122,11 @@ resource "aws_subnet" "dmz_subnet" {
 
 
 resource "aws_subnet" "pub_web_subnet" {
-  count                   = "${local.modulus_az}"
+  count                   = "${local.mod_az}"
   cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 201)}"
   vpc_id                  = "${aws_vpc.hashicorp_vpc.id}"
   map_public_ip_on_launch = "true"
-  availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.modulus_az]}"
+  availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
 
   tags {
           Name = "web-pub-subnet"
@@ -143,7 +143,7 @@ resource "aws_subnet" "db_subnet" {
   vpc_id                  = "${aws_vpc.hashicorp_vpc.id}"
   cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 11)}"
   map_public_ip_on_launch = "false"
-  availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.modulus_az]}"
+  availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
 
   tags {
           Name = "db-subnet"
@@ -157,8 +157,8 @@ resource "aws_subnet" "web_subnet" {
   cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 101)}"
   vpc_id                  = "${aws_vpc.hashicorp_vpc.id}"
   map_public_ip_on_launch = "false"
-  #availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.modulus_az]}"
-  availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.modulus_az]}"
+  #availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
+  availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
 
   tags {
           Name = "web-prv-subnet"
