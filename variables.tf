@@ -1,24 +1,48 @@
-variable "owner" {}
+variable "owner" {
+    default = "joern@hashicorp.com"
+}
 variable "name" {}
-variable "ttl" {}
-variable "environment_tag" {}
+variable "ttl" {
+    default = "336"
+}
+variable "environment_tag" {
+    default = "demo"
+}
+ 
+variable "key_name" {
+    default ="joestack"
+}
 
-variable "key_name" {}
+variable "dns_domain" {
+    default = "joestack.xyz"
+}
 
-variable "dns_domain" {}
+variable "network_address_space" {
+    default = "192.168.0.0/16"
+}
 
-variable "network_address_space" {}
-
-variable "ssh_user" {}
+variable "ssh_user" {
+    default = "ubuntu"
+}
 
 
 locals {
   mod_az = "${length(split(",", join(", ",data.aws_availability_zones.available.names)))}"
 }
 
-variable "db_subnet_count" {}
+variable "db_subnet_count" {
+    default = "2"
+}
 
-variable "web_subnet_count" {}
+variable "web_subnet_count" {
+    default = "2"
+}
+
+variable "instance_type" {
+  default = "t2.small"
+}
+
+
 
 
 
