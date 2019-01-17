@@ -179,7 +179,7 @@ resource "aws_instance" "nat" {
 
   tags {
          Name = "nat-instance"
-         Environment =${var.environment_tag}
+         Environment = "${var.environment_tag}"
   }
 
 }
