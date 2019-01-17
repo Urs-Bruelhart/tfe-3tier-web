@@ -55,7 +55,7 @@ resource "aws_security_group_rule" "web-ssh" {
 }
 resource "aws_security_group_rule" "web-egress" {
     security_group_id = "${aws_security_group.web.id}"
-    type = "engress"
+    type = "egress"
     from_port = 0
     to_port = 0
     protocol = "-1"
@@ -82,7 +82,7 @@ resource "aws_security_group_rule" "db-ssh" {
 }
 resource "aws_security_group_rule" "db-egress" {
     security_group_id = "${aws_security_group.db.id}"
-    type = "engress"
+    type = "egress"
     from_port = 0
     to_port = 0
     protocol = "-1"
@@ -112,7 +112,7 @@ resource "aws_security_group_rule" "elb-http" {
 }
 resource "aws_security_group_rule" "elb-egress" {
     security_group_id = "${aws_security_group.elb.id}"
-    type = "engress"
+    type = "egress"
     from_port = 0
     to_port = 0
     protocol = "-1"
