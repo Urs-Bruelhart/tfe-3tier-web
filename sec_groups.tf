@@ -126,6 +126,21 @@ resource "aws_security_group" "nat" {
     vpc_id = "${aws_vpc.hashicorp_vpc.id}"
 }
 
+resource "aws_security_group_rule" "nat-http" {
+    security_group_id = "${aws_security_group.nat.id}"
+    type = "ingress"
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+}resource "aws_security_group_rule" "nat-htts" {
+    security_group_id = "${aws_security_group.nat.id}"
+    type = "ingress"
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+}
 resource "aws_security_group_rule" "nat-egress" {
     security_group_id = "${aws_security_group.nat.id}"
     type = "egress"
