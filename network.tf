@@ -19,6 +19,18 @@ data "aws_ami" "ubuntu" {
   }
   owners = ["099720109477"] # Canonical
 }
+data "aws_ami" "nat_instance" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amazon/amzn-ami-vpc-nat-hvm-*"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  owners = ["137112412989"] # Amazon
+}
 
 
 # VPC 
@@ -169,7 +181,8 @@ resource "aws_subnet" "web_subnet" {
 
 
 resource "aws_instance" "nat" {
-  ami                         = "ami-01623d7b"
+  ami                         = "${data.aws_ami.nat_instance}"
+  #ami                         = "ami-06a5303d47fbd8c60"
   instance_type               = "t2.micro"
   subnet_id                   = "${aws_subnet.dmz_subnet.id}"
   associate_public_ip_address = "true"

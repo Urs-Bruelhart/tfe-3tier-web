@@ -1,7 +1,9 @@
 variable "owner" {
     default = "joern@hashicorp.com"
 }
-variable "name" {}
+variable "name" {
+    default = "hashicorp-js"
+}
 variable "ttl" {
     default = "336"
 }
