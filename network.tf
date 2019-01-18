@@ -23,7 +23,7 @@ data "aws_ami" "nat_instance" {
   most_recent = true
   filter {
     name   = "name"
-    values = ["amazon/amzn-ami-vpc-nat-hvm-*"]
+    values = ["amzn-ami-vpc-nat-hvm-*"]
   }
   filter {
     name   = "virtualization-type"
