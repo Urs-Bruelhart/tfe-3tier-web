@@ -12,7 +12,7 @@ variable "environment_tag" {
 }
  
 variable "key_name" {
-    default ="joestack"
+    default ="joestack_aws"
 }
 
 variable "id_rsa_aws" {
