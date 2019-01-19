@@ -15,6 +15,10 @@ variable "key_name" {
     default ="joestack"
 }
 
+variable "id_rsa_aws" {
+  
+}
+
 variable "dns_domain" {
     default = "joestack.xyz"
 }
