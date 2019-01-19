@@ -48,7 +48,7 @@ resource "local_file" "ansible_inventory" {
 
 resource "null_resource" "provisioner" {
 
-    depends_on = ["${local_file.ansible_inventory}"]
+   # depends_on = ["${local_file.ansible_inventory}"]
    
     triggers {    
         always_run = "${timestamp()}"
