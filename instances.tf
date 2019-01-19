@@ -1,6 +1,6 @@
 resource "aws_instance" "web_nodes" {
   count                       = "${var.web_node_count}"
-  ami                         = "${data.aws_ami.ubuntu}"
+  ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${element(aws_subnet.web_subnet.*.id, count.index + 1)}"
   associate_public_ip_address = "false"
@@ -18,7 +18,7 @@ resource "aws_instance" "web_nodes" {
 
 resource "aws_instance" "db_nodes" {
   count                       = "${var.db_node_count}"
-  ami                         = "${data.aws_ami.ubuntu}"
+  ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${element(aws_subnet.db_subnet.*.id, count.index + 1)}"
   associate_public_ip_address = "false"
