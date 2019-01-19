@@ -14,18 +14,18 @@ data "template_file" "ansible_web_hosts" {
 }
 
 
-data "template_file" "ansible_db_hosts" {
-    count      = "${var.db_node_count}"
-    template   = "${file("${path.module}/templates/ansible_hosts.tpl")}"
-    depends_on = ["aws_instance.db_nodes"]
-
-      vars {
-        node_name    = "${lookup(aws_instance.db_nodes.*.tags[count.index], "Name")}"
-        ansible_user = "${var.ssh_user}"
-        extra        = "ansible_host=${element(aws_instance.db_nodes.*.private_ip,count.index)}"
-      }
-
-}
+#data "template_file" "ansible_db_hosts" {
+#    count      = "${var.db_node_count}"
+#    template   = "${file("${path.module}/templates/ansible_hosts.tpl")}"
+#    depends_on = ["aws_instance.db_nodes"]
+#
+#      vars {
+#        node_name    = "${lookup(aws_instance.db_nodes.*.tags[count.index], "Name")}"
+#        ansible_user = "${var.ssh_user}"
+#        extra        = "ansible_host=${element(aws_instance.db_nodes.*.private_ip,count.index)}"
+#      }
+#
+#}
 data "template_file" "ansible_groups" {
     template = "${file("${path.module}/templates/ansible_groups.tpl")}"
 
