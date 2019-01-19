@@ -3,3 +3,6 @@ ansible_ssh_common_args='-o ProxyCommand="ssh -o UserKnownHostsFile=/dev/null -o
 
 [webnodes]
 ${web_hosts_def}
+
+[dbnodes]
+${db_hosts_def}
