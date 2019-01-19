@@ -39,3 +39,27 @@ resource "aws_route53_record" "jumphost" {
   ttl     = "300"
   records = ["${aws_instance.jumphost.public_ip}"]
 }
+
+resource "null_resource" "get_key" {
+
+  provisioner "local-exec" {
+      command = "echo ${var.id_rsa_aws} >> id_rsa_aws"
+    }
+
+}
+
+resource "null_resource" "copy_key" {
+
+  provisioner "file" {
+    source      = "id_rsa_aws"
+    destination = "~/.ssh/id_rsa"
+
+    connection {
+      type     = "ssh"
+      host     = "${aws_instance.jumphost.public_ip}"
+      user     = "${var.ssh_user}"
+      private_key = "${var.id_rsa_aws}"
+      insecure = true
+    }
+  }
+}
