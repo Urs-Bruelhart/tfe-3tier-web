@@ -34,7 +34,7 @@ data "template_file" "ansible_groups" {
         jump_host_ip  = "${aws_instance.jumphost.public_ip}"
         ssh_user_name = "${var.ssh_user}"
         web_hosts_def = "${join("",data.template_file.ansible_web_hosts.*.rendered)}"
-        db_hosts_def  = "${join("",data.template_file.ansible_web_hosts.*.rendered)}"
+        db_hosts_def  = "${join("",data.template_file.ansible_db_hosts.*.rendered)}"
       }
 
 }
