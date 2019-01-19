@@ -13,6 +13,8 @@ resource "aws_instance" "jumphost" {
   vpc_security_group_ids      = ["${aws_security_group.jumphost.id}"]
   #key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
   key_name                    = "${var.key_name}"
+  user_data = "${file("./templates/jumphost.sh")}"
+
 
   tags {
          Name = "jumphost"
