@@ -5,7 +5,7 @@ variable "name" {
     default = "hashicorp-js"
 }
 variable "ttl" {
-    default = "336"
+    default = "1440"
 }
 variable "environment_tag" {
     default = "demo"
