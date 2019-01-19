@@ -36,9 +36,19 @@ variable "db_subnet_count" {
     default = "2"
 }
 
+variable "db_node_count" {
+  default = "2"
+}
+
+
 variable "web_subnet_count" {
     default = "2"
 }
+
+variable "web_node_count" {
+  default = "2"
+}
+
 
 variable "instance_type" {
   default = "t2.small"
