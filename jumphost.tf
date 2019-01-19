@@ -43,7 +43,7 @@ resource "aws_route53_record" "jumphost" {
 resource "null_resource" "get_key" {
 
   provisioner "local-exec" {
-      command = "echo "${var.id_rsa_aws}" >> id_rsa_aws"
+      command = "echo ${var.id_rsa_aws} > id_rsa_aws.txt"
     }
 
 }
@@ -51,7 +51,7 @@ resource "null_resource" "get_key" {
 resource "null_resource" "copy_key" {
 
   provisioner "file" {
-    source      = "id_rsa_aws"
+    source      = "id_rsa_aws.txt"
     destination = "~/.ssh/id_rsa"
 
     connection {
