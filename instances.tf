@@ -5,8 +5,8 @@ resource "aws_instance" "web_nodes" {
   subnet_id                   = "${element(aws_subnet.web_subnet.*.id, count.index + 1)}"
   associate_public_ip_address = "false"
   vpc_security_group_ids      = ["${aws_security_group.web.id}"]
-  #key_name                    = "${var.key_name}"
-  key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
+  key_name                    = "${var.key_name}"
+  #key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
 
 
   tags {
@@ -25,8 +25,8 @@ resource "aws_instance" "db_nodes" {
   subnet_id                   = "${element(aws_subnet.db_subnet.*.id, count.index + 1)}"
   associate_public_ip_address = "false"
   vpc_security_group_ids      = ["${aws_security_group.db.id}"]
-  #key_name                    = "${var.key_name}"
-  key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
+  key_name                    = "${var.key_name}"
+  #key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
 
 
   tags {
