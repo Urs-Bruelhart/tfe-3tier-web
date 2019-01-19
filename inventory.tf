@@ -34,6 +34,10 @@ resource "local_file" "ansible_inventory" {
 
 
 resource "null_resource" "provisioner" {
+   
+    triggers {    
+        always_run = "${timestamp()}"
+  }
 
   provisioner "file" {
     source      = "${path.module}/inventory"
