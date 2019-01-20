@@ -21,9 +21,10 @@ resource "aws_instance" "jumphost" {
               EOF
 
     tags {
-         Name = "jumphost"
+         Name        = "jumphost"
          Environment = "${var.environment_tag}"
-         TTL = "${var.ttl}"
+         TTL         = "${var.ttl}"
+         Owner       = "${var.owner}"
   }
 }
 

@@ -182,7 +182,6 @@ resource "aws_subnet" "web_subnet" {
 
 resource "aws_instance" "nat" {
   ami                         = "${data.aws_ami.nat_instance.id}"
-  #ami                         = "ami-06a5303d47fbd8c60"
   instance_type               = "t2.micro"
   subnet_id                   = "${aws_subnet.dmz_subnet.id}"
   associate_public_ip_address = "true"
@@ -191,9 +190,10 @@ resource "aws_instance" "nat" {
   source_dest_check           = false
 
   tags {
-         Name = "nat-instance"
+         Name        = "nat-instance"
          Environment = "${var.environment_tag}"
-         TTL = "${var.ttl}"
+         TTL         = "${var.ttl}"
+         Owner       = "${var.owner}"
   }
 
 }

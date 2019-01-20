@@ -48,7 +48,6 @@ resource "local_file" "ansible_inventory" {
 
 resource "null_resource" "provisioner" {
 
-   # depends_on = ["${local_file.ansible_inventory}"]
    
     triggers {    
         always_run = "${timestamp()}"
@@ -62,7 +61,6 @@ resource "null_resource" "provisioner" {
       type     = "ssh"
       host     = "${aws_instance.jumphost.public_ip}"
       user     = "${var.ssh_user}"
-      #password = "${var.root_password}"
       private_key = "${var.id_rsa_aws}"
       insecure = true
     }

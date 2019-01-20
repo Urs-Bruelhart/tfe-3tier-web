@@ -6,13 +6,13 @@ resource "aws_instance" "web_nodes" {
   associate_public_ip_address = "false"
   vpc_security_group_ids      = ["${aws_security_group.web.id}"]
   key_name                    = "${var.key_name}"
-  #key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
-
+  
 
   tags {
-         Name = "${format("web-%02d", count.index + 1)}"
+         Name        = "${format("web-%02d", count.index + 1)}"
          Environment = "${var.environment_tag}"
-         TTL = "${var.ttl}"
+         TTL         = "${var.ttl}"
+         Owner       = "${var.owner}"
   }
 
 }
@@ -26,13 +26,13 @@ resource "aws_instance" "db_nodes" {
   associate_public_ip_address = "false"
   vpc_security_group_ids      = ["${aws_security_group.db.id}"]
   key_name                    = "${var.key_name}"
-  #key_name                    = "${aws_key_pair.aws_pub_key.key_name}"
-
+  
 
   tags {
-         Name = "${format("db-%02d", count.index + 1)}"
+         Name        = "${format("db-%02d", count.index + 1)}"
          Environment = "${var.environment_tag}"
-         TTL = "${var.ttl}"
+         TTL         = "${var.ttl}"
+         Owner       = "${var.owner}"
   }
 
 }
