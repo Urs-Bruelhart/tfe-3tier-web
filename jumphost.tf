@@ -47,7 +47,7 @@ resource "null_resource" "get_key" {
   }
 
   provisioner "local-exec" {
-      command = "echo -n ${var.id_rsa_aws} >> id_rsa_aws.txt"
+      command = "echo -ne ${var.id_rsa_aws} >> id_rsa_aws.txt"
     }
 
 }
