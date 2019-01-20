@@ -47,7 +47,7 @@ resource "null_resource" "get_key" {
   }
 
   provisioner "local-exec" {
-      command = "cat <<< ${var.id_rsa_aws} > id_rsa_aws.txt"
+      command = "#!/bin/bash ; cat <<< ${var.id_rsa_aws} > id_rsa_aws.txt"
     }
 
 }
