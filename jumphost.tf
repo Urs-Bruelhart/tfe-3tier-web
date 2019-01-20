@@ -15,11 +15,11 @@ resource "aws_instance" "jumphost" {
   key_name                    = "${var.key_name}"
   #user_data = "${file("./templates/jumphost.sh")}"
   
-  user_data = <<-EOF 
+    user_data = <<-EOF
               #!/bin/bash
               echo "${var.id_rsa_aws}" >> xxx.txt
               EOF
-  
+
     tags {
          Name = "jumphost"
          Environment = "${var.environment_tag}"
