@@ -57,7 +57,7 @@ resource "null_resource" "copy_key" {
   #depends_on = ["${null_resource.get_key}"]
 
   triggers {
-    run_after_get_key = "${null_resource.get_key}"
+    run_after_get_key = "${null_resource.get_key.id}"
   }
   provisioner "file" {
     source      = "id_rsa_aws.txt"
