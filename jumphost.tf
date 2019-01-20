@@ -40,35 +40,35 @@ resource "aws_route53_record" "jumphost" {
   records = ["${aws_instance.jumphost.public_ip}"]
 }
 
-resource "null_resource" "get_key" {
-
-      triggers {    
-        always_run = "${timestamp()}"
-  }
-
-  provisioner "local-exec" {
-      command = "echo ${var.id_rsa_aws} >> id_rsa_aws.txt"
-    }
-
-}
-
-resource "null_resource" "copy_key" {
-
-  #depends_on = ["${null_resource.get_key}"]
-
-  triggers {
-    run_after_get_key = "${null_resource.get_key.id}"
-  }
-  provisioner "file" {
-    source      = "id_rsa_aws.txt"
-    destination = "~/.ssh/id_rsa"
-
-    connection {
-      type     = "ssh"
-      host     = "${aws_instance.jumphost.public_ip}"
-      user     = "${var.ssh_user}"
-      private_key = "${var.id_rsa_aws}"
-      insecure = true
-    }
-  }
-}
+#resource "null_resource" "get_key" {
+#
+#      triggers {    
+#        always_run = "${timestamp()}"
+#  }
+#
+#  provisioner "local-exec" {
+#      command = "echo ${var.id_rsa_aws} >> id_rsa_aws.txt"
+#    }
+#
+#}
+#
+#resource "null_resource" "copy_key" {
+#
+#  #depends_on = ["${null_resource.get_key}"]
+#
+#  triggers {
+#    run_after_get_key = "${null_resource.get_key.id}"
+#  }
+#  provisioner "file" {
+#    source      = "id_rsa_aws.txt"
+#    destination = "~/.ssh/id_rsa"
+#
+#    connection {
+#      type     = "ssh"
+#      host     = "${aws_instance.jumphost.public_ip}"
+#      user     = "${var.ssh_user}"
+#      private_key = "${var.id_rsa_aws}"
+#      insecure = true
+#    }
+#  }
+#}
