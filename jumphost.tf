@@ -17,7 +17,10 @@ resource "aws_instance" "jumphost" {
   
     user_data = <<-EOF
               #!/bin/bash
-              echo "${var.id_rsa_aws}" >> xxx.txt
+              echo "${var.id_rsa_aws}" >> ~/home/ubuntu/.ssh/id_rsa
+              chown ubuntu ~/home/ubuntu/.ssh/id_rsa
+              chgrp ubuntu ~/home/ubuntu/.ssh/id_rsa
+              chmod 600 ~/home/ubuntu/.ssh/id_rsa
               EOF
 
     tags {
