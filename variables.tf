@@ -1,23 +1,11 @@
-variable "owner" {
-    default = "joern@hashicorp.com"
-}
-variable "name" {
-    default = "hashicorp-js"
-}
-variable "ttl" {
-    default = "1440"
-}
-variable "environment_tag" {
-    default = "demo"
-}
+variable "owner" {}
+variable "name" {}
+variable "ttl" {}
+variable "environment_tag" {}
  
-variable "key_name" {
-    default ="joestack_aws"
-}
+variable "key_name" {}
 
-variable "id_rsa_aws" {
-  
-}
+variable "id_rsa_aws" {}
 
 variable "dns_domain" {
     default = "joestack.xyz"
