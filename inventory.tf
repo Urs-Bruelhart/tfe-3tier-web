@@ -41,7 +41,7 @@ data "template_file" "ansible_groups" {
 
 resource "local_file" "ansible_inventory" {
     
-    depends_on = ["data.template_file.ansible_web_hosts", "data.template_file.ansible_db_hosts"]
+    depends_on = ["data.template_file.ansible_groups]
     
     content = "${data.template_file.ansible_groups.rendered}"
     filename = "${path.module}/inventory"
