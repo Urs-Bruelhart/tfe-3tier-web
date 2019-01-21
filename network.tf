@@ -135,7 +135,7 @@ resource "aws_subnet" "dmz_subnet" {
 
 resource "aws_subnet" "pub_web_subnet" {
   count                   = "${local.mod_az}"
-  cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 201)}"
+  cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 10)}"
   vpc_id                  = "${aws_vpc.hashicorp_vpc.id}"
   map_public_ip_on_launch = "true"
   availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
@@ -153,7 +153,7 @@ resource "aws_subnet" "pub_web_subnet" {
 resource "aws_subnet" "db_subnet" {
   count                   = "${var.db_subnet_count}"
   vpc_id                  = "${aws_vpc.hashicorp_vpc.id}"
-  cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 11)}"
+  cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 50)}"
   map_public_ip_on_launch = "false"
   availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
 
@@ -166,7 +166,7 @@ resource "aws_subnet" "db_subnet" {
 
 resource "aws_subnet" "web_subnet" {
   count                   = "${var.web_subnet_count}"
-  cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 101)}"
+  cidr_block              = "${cidrsubnet(var.network_address_space, 8, count.index + 20)}"
   vpc_id                  = "${aws_vpc.hashicorp_vpc.id}"
   map_public_ip_on_launch = "false"
   #availability_zone       = "${data.aws_availability_zones.available.names[count.index % local.mod_az]}"
